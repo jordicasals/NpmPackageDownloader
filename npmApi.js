@@ -8,7 +8,8 @@ let Promise = require('bluebird'),
     winston = require('winston'),
     validUrl = require('valid-url'),
     got = require('got'),
-    nameUtils = require('./nameUtils');
+    nameUtils = require('./nameUtils'),
+	path = require('path');
 
 module.exports = {
     getVersionsOf (name) {
@@ -93,7 +94,7 @@ module.exports = {
 
         return download
             .use(downloadStatus())
-            .dest(downloadDir + '\\' + name + "\\-\\")
+            .dest(path.join(downloadDir, name, '-'))
             .runAsync();
     }
 };
